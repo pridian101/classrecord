@@ -27,7 +27,7 @@
 			      <input type="text" placeholder="Username"/>
 			      <input type="password" placeholder="Password"/>
 			      <button>Login</button>
-			      <p class="message">Not registered? <a href="signup.php">Sign Up</a></p>
+			      <p class="message">Not registered? <a href="sign_up.php">Sign Up</a></p>
 			    </form>
 			  </div>
 			</div>    
