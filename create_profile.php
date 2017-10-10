@@ -63,11 +63,17 @@
 		    	'section' => $section,
 		    	'academic_year' => $academic_year
 		    ]);
+
+		    $user = $this->database->getReference("users/{$key}");
+			$profile = $user->getValue();
+			unset($profile['login']);
+			header("Location: profile.php?user=".json_encode($profile));
+			exit;
 		}
 	}
 
 	if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-		$user = new Profile();
+		$user = new Teacher();
 		$user->CreateProfile();
 	} 
 			
