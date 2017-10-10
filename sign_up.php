@@ -38,7 +38,7 @@
                         <input type="text" name="grade" placeholder="Grade taught"/>
                         <input type="text" name="email" placeholder="Email address"/>
                         <input type="text" name="password" placeholder="Password"/>
-                        <input type="button" name="next" class="next action-button" value="Next"/>
+                        <input type="button" class="next action-button" value="Next"/>
                     </fieldset>
                     <fieldset>
                         <h2 class="fs-title">School Profile</h2>
@@ -47,15 +47,15 @@
                         <input type="text" name="district" placeholder="District"/>
                         <input type="text" name="school_name" placeholder="Name of School"/>
                         <input type="text" name="school_id" placeholder="School ID"/>
-                        <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
-                        <input type="button" name="next" class="next action-button" value="Next"/>
+                        <input type="button" class="previous action-button-previous" value="Previous"/>
+                        <input type="button" class="next action-button" value="Next"/>
                     </fieldset>
                     <fieldset>
                         <h2 class="fs-title">Grade and Section</h2>
-                        <input type="password" name="section" placeholder="Section"/>
-                        <input type="password" name="academic_year" placeholder="Academic Year"/>
-                        <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
-                        <input type="submit" name="previous" class="action-button" value="Submit"/>
+                        <input type="text" name="section" placeholder="Section"/>
+                        <input type="text" name="academic_year" placeholder="Academic Year"/>
+                        <input type="button" class="previous action-button-previous" value="Previous"/>
+                        <input type="submit" class="action-button" value="Submit"/>
                     </fieldset>
                 </form>
             </div>
