@@ -1,6 +1,9 @@
 /*custom font*/
 @import url(https://fonts.googleapis.com/css?family=Montserrat);
-
+.class-header h5{
+    padding-left: 0px;
+    margin-left: 0px;
+}
 .sidebar1 {
     background: #00A876;
     /* For browsers that do not support gradients */
@@ -39,9 +42,6 @@
     font-weight: bolder;
     padding-left: 35px;
 }
-h5{
-    font-size: 20px;
-}
 h1 {
   font-size: 20px;
   margin-bottom: 20px;
@@ -56,3 +56,5 @@ h1 {
     padding: 0;
     clear: both;
 }
+
+/* custom card */
