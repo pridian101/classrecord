@@ -94,14 +94,5 @@ $(document).ready(function() {
   });
 }); 
 </script>
-<script>
 
-$(document).ready(function() {
-
-   $('#myModal').click(function() {
-     $("#lrn").text($(this).attr('lrn'));
-     $("#myModal").modal("show");
-  });
-});
-</script>
 <?php include 'misc/footer.php' ?>
