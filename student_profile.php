@@ -48,19 +48,14 @@
             return json_encode($studentprofile);
         }
 
-        // public function ShowProfile()
-        // {
-        //     $user = $this->database->getReference('users/-Kw4FPp3zRfcbgcrpujU');
-        //     $profile = $user->getValue();
-        //     unset($profile['login']);
-        //     header("Location: profile.php?user=".json_encode($profile));
-        //     exit;
-        // }
-
-        // public function AddStudent()
-        // {
+        public function DeleteSudent()
+        {   
             
-        // }
+            $delkey = $_REQUEST['key'];
+            $reference = "sections/-Kw4FQ-gTP9R1PKZ3Uwa/students/".$delkey;
+            $this->database->getReference($reference)->remove();
+
+        }
     }
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -68,6 +63,9 @@
     
         $profile = new Profile();
         $profile->CreateProfile();
+    } elseif ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
+        $profile = new Profile();
+        $profile->DeleteSudent();
     } else {
         $profile = new Profile();
         $profile->ShowStudents();

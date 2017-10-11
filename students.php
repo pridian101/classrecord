@@ -14,17 +14,17 @@ include 'misc/header.php' ?>
 		</thead>
 		<tbody>
 			<?php
-				foreach ($sprofile as $key => $value) {
-					echo "
-						<tr><td> {$value['lrn']} </td>
-						<td> {$value['last_name']}, {$value['first_name']} {$value['middle_name']} </td>
-						<td>
-							<button class='open-details-modal' data-toggle='modal' 
-								lrn='{$value['lrn']}' href='#myModal' data-target='#myModal'>Delete</button>
-						</td></tr>";
+				foreach ($sprofile as $key => $value) { ?>
 
-				}
-			?>
+						<tr>
+							<td> <?php echo $value['lrn']; ?> </td>
+							<td> <?php echo $value['last_name'].', '.$value['first_name'].' '.$value['middle_name']; ?> </td>
+						<td>
+							<button class='button' data-toggle='modal' data-id=<?php echo $value['lrn']; ?> data-fname=<?php echo $value['first_name']; ?> data-lname=<?php echo $value['last_name']; ?> data-key=<?php echo $key; ?> href='#myModal' data-target='#myModal'>Delete
+							</button>
+						</td></tr>
+
+				<?php }	?>
 		</tbody>
 	</table>
 
@@ -34,19 +34,24 @@ include 'misc/header.php' ?>
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="lrn">Delete this record</h5>
+        <h6 class="modal-title">Delete student record</h6>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        LRN:
-        <br>
-        First name:
-        <br>
-        Middle name:
-        <br>
-        Last name:
+		 <table class="table table-bordered">
+		 	<tbody>
+		        <tr>
+		        	<td style="font-weight: bold; width: 30%">Student LRN: </td>
+		        	<td id="blrn"> </td>
+		        </tr>
+		        <tr>
+		        	<td style="font-weight: bold; width: 30%">Student name: </td>
+		        	<td id="sname"> </td>
+		        </tr>
+		    </tbody>   	
+		</table> 
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
@@ -56,7 +61,7 @@ include 'misc/header.php' ?>
   </div>
 </div>
 
-    <form class="login-form" id="studentForm">
+    <form id="studentForm">
 			      <input type="text" name="lrn" id="lrn" placeholder="Student LRN"/>
 			      <input type="text" name="first_name" id="first_name" placeholder="First Name"/>
 			      <input type="text" name="middle_name" id="middle_name" placeholder="Middle Name"/>
@@ -93,6 +98,31 @@ $(document).ready(function() {
     });
   });
 }); 
+</script>
+<script>
+$('#myModal').on('show.bs.modal', function (event) {
+  var button = $(event.relatedTarget) // Button that triggered the modal
+  var lrn = button.data('id')
+  var fname = button.data('fname')
+  var lname = button.data('lname')
+  var key = button.data('key')
+  var modal = $(this)
+  modal.find('.modal-body #blrn').text(lrn)
+  modal.find('.modal-body #sname').text(lname + ', ' + fname)
+
+  $.ajax
+    ({
+      type: "DELETE",
+      dataType : 'json',
+      async: true,
+      url: 'student_profile.php',
+      data: key,
+      success: function () {console.log("Thanks!");},
+      failure: function() {console.log("Error!");}
+    });
+    $("#myModal").modal("hide");
+        location.reload(); 
+})
 </script>
 
 <?php include 'misc/footer.php' ?>

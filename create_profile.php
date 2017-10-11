@@ -38,20 +38,23 @@
 		    		'email' => $email,
 		    		'password' => $password
 			    ],
-			    'personal_information'=>
+			    'profile' =>
 			    [
-		    		'first_name' => $first_name,
-		    		'last_name' => $last_name,
-		    		'grade' => $grade
-			    ],
-			    'school_information'=>
-			    [
-		    		'region' => $region,
-		    		'division' => $division,
-		    		'district' => $district,
-		    		'school_name' => $school_name,
-		    		'school_id' => $school_id,
-			    ]
+				    'personal_information'=>
+				    [
+			    		'first_name' => $first_name,
+			    		'last_name' => $last_name,
+			    		'grade' => $grade
+				    ],
+				    'school_information'=>
+				    [
+			    		'region' => $region,
+			    		'division' => $division,
+			    		'district' => $district,
+			    		'school_name' => $school_name,
+			    		'school_id' => $school_id,
+				    ]
+				]
 		    ]);
 
 		    $key = $newUser->getKey();
@@ -70,6 +73,13 @@
 			header("Location: profile.php?user=".json_encode($profile));
 			exit;
 		}
+
+		function ShowProfile()
+        {
+            $profile = $this->database->getReference("users/-Kw8jNfmDHvayeKSQL8f/profile");
+            $displayprofile = $profile->getValue();
+            return json_encode($displayprofile);
+        }
 	}
 
 	if ($_SERVER['REQUEST_METHOD'] === 'POST') {
