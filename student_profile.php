@@ -43,16 +43,15 @@
 
         function ShowStudents()
         {
-            $student = $this->database->getReference("sections/-Kw4FQ-gTP9R1PKZ3Uwa/students");
-            $studentprofile = $student->getValue();
+            $reference = $this->database->getReference('sections/-Kw4FQ-gTP9R1PKZ3Uwa/students');
+            $studentprofile = $reference->getValue(); 
             return json_encode($studentprofile);
         }
 
         public function DeleteSudent()
         {   
-            
-            $delkey = $_REQUEST['key'];
-            $reference = "sections/-Kw4FQ-gTP9R1PKZ3Uwa/students/".$delkey;
+            extract($_REQUEST);
+            $reference = "sections/-Kw4FQ-gTP9R1PKZ3Uwa/students/".$key;
             $this->database->getReference($reference)->remove();
 
         }
