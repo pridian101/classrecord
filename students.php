@@ -14,8 +14,9 @@ include 'misc/header.php' ?>
 		</thead>
 		<tbody>
 			<?php
-				foreach ($sprofile as $key => $value) { ?>
-
+				if (!empty($sprofile)) {
+					foreach ($sprofile as $key => $value) { 
+			?>
 						<tr>
 							<td> <?php echo $value['lrn']; ?> </td>
 							<td> <?php echo $value['last_name'].', '.$value['first_name'].' '.$value['middle_name']; ?> </td>
@@ -24,9 +25,16 @@ include 'misc/header.php' ?>
 							</button>
 						</td></tr>
 
-				<?php }	?>
+			<?php 	}
+				}	
+			?>
 		</tbody>
 	</table>
+
+	<form action="test.php">
+		<input type='hidden' name='test' value='123'>
+		<button>Submit</button>
+	</form>
 
 	<!-- Button trigger modal -->
 <!-- Modal -->
@@ -70,6 +78,8 @@ include 'misc/header.php' ?>
 			    </form>
 
 
+
+
 <script>
 $(document).ready(function() {
   $("#saveStudent").click(function(){
@@ -110,18 +120,18 @@ $('#myModal').on('show.bs.modal', function (event) {
   modal.find('.modal-body #blrn').text(lrn)
   modal.find('.modal-body #sname').text(lname + ', ' + fname)
 
+  var student= {};
+    student.key = lrn;
   $.ajax
     ({
       type: "DELETE",
       dataType : 'json',
       async: true,
       url: 'student_profile.php',
-      data: key,
+      data: student,
       success: function () {console.log("Thanks!");},
       failure: function() {console.log("Error!");}
     });
-    $("#myModal").modal("hide");
-        location.reload(); 
 })
 </script>
 
