@@ -65,8 +65,8 @@
             $student->DeleteStudent($_POST['key']);
         }
     } 
-    /*else {
+    else {
         $student = new Student();
         $student->ShowStudents();
-    }*/
+    }
 ?>
