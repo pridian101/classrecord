@@ -39,7 +39,7 @@ include 'misc/header.php' ?>
 
 	<!-- Button trigger modal -->
 	<!-- Modal -->
-	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="Delete" aria-hidden="true">
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="Delete" aria-hidden="true" style="display:none">
 	  <div class="modal-dialog" role="document">
 	    <div class="modal-content">
 	      <div class="modal-header">
@@ -68,7 +68,7 @@ include 'misc/header.php' ?>
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-	        <button type="button" class="btn btn-primary" id="delete">Delete</button>
+	        <button type="button" class="btn btn-primary" data-dismiss="modal" id="delete">Delete</button>
 	      </div>
 	    </div>
 	  </div>
@@ -146,7 +146,6 @@ $('#delete').click(function(){
       success: function () {console.log("Success!");},
       failure: function() {console.log("Error!");}
     });
-    $('#delete').modal('toggle');
     window.location.reload(true);
     });
 });
