@@ -9,7 +9,7 @@
     /**
     *  This class is intended for user creation and profile retrieval
     */
-    class Profile
+    class Student
     {
         
         function __construct()
@@ -43,33 +43,30 @@
 
         function ShowStudents()
         {
-            $student = $this->database->getReference("sections/-Kw4FQ-gTP9R1PKZ3Uwa/students");
-            $studentprofile = $student->getValue();
+            $reference = $this->database->getReference('sections/-Kw4FQ-gTP9R1PKZ3Uwa/students');
+            $studentprofile = $reference->getValue(); 
             return json_encode($studentprofile);
         }
 
-        public function DeleteSudent()
+        public function DeleteStudent($key)
         {   
-            
-            $delkey = $_REQUEST['key'];
-            $reference = "sections/-Kw4FQ-gTP9R1PKZ3Uwa/students/".$delkey;
-            $this->database->getReference($reference)->remove();
-
+            $student = $this->database->getReference("sections/-Kw4FQ-gTP9R1PKZ3Uwa/students");
+            $rmstudent=$student->getChild($key);
+            $rmstudent->remove();
         }
     }
 
+    $student = new Student();
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        # code...
-    
-        $profile = new Profile();
-        $profile->CreateProfile();
-    } elseif ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
-        $profile = new Profile();
-        $profile->DeleteSudent();
-    } else {
-        $profile = new Profile();
-        $profile->ShowStudents();
-    }
-
-            
+        if (isset($_POST['create'])) {
+            $student->CreateProfile();
+        }
+        if (isset($_POST['delete'])) {
+            $student->DeleteStudent($_POST['key']);
+        }
+    } 
+    /*else {
+        $student = new Student();
+        $student->ShowStudents();
+    }*/
 ?>
